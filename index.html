@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASANTEMAN FETTEH KUO - Cloud Attendance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -11,12 +12,26 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
+        :root {
+            --primary: #1a2a6c;
+            --secondary: #b21f1f;
+            --accent: #fdbb2d;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
+        }
+
         body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
             min-height: 100vh;
             padding: 20px;
             color: #333;
         }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -28,8 +43,9 @@
             flex-direction: column;
             height: 95vh;
         }
+
         header {
-            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             color: white;
             padding: 15px 20px;
             text-align: center;
@@ -38,6 +54,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
         }
+
         .logo-container {
             width: 70px;
             height: 70px;
@@ -50,25 +67,30 @@
             justify-content: center;
             flex-shrink: 0;
         }
+
         .logo-container img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
         }
+
         .header-text {
             flex: 1;
             margin: 0 15px;
         }
+
         .main-header {
             font-size: 2.5rem;
             margin-bottom: 5px;
             font-weight: 700;
         }
+
         .sub-header {
             font-size: 1.2rem;
             opacity: 0.9;
             font-weight: 600;
         }
+
         .mode-indicator {
             display: inline-block;
             padding: 5px 10px;
@@ -76,37 +98,44 @@
             font-size: 0.9rem;
             font-weight: bold;
             margin-left: 10px;
-            background: #28a745;
+            background: var(--success);
             color: white;
         }
+
         .mode-indicator.local {
             background: #6c757d;
         }
+
         .mode-indicator.cloud {
-            background: #28a745;
+            background: var(--success);
         }
+
         .app-body {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
+
         .sidebar {
             width: 250px;
-            background: #f8f9fa;
+            background: var(--light);
             border-right: 1px solid #e9ecef;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
+
         .dropdown-nav {
             display: flex;
             flex-direction: column;
             padding: 10px 0;
             border-bottom: 1px solid #e9ecef;
         }
+
         .dropdown-item {
             position: relative;
         }
+
         .dropdown-btn {
             width: 100%;
             padding: 12px 20px;
@@ -122,15 +151,18 @@
             align-items: center;
             justify-content: space-between;
         }
+
         .dropdown-btn i {
             width: 20px;
             text-align: center;
             margin-right: 10px;
         }
+
         .dropdown-btn.active {
-            background: #1a2a6c;
+            background: var(--primary);
             color: white;
         }
+
         .dropdown-btn::after {
             content: '\f078';
             font-family: 'Font Awesome 6 Free';
@@ -138,17 +170,21 @@
             font-size: 0.8rem;
             transition: transform 0.3s;
         }
+
         .dropdown-btn.active::after {
             transform: rotate(180deg);
         }
+
         .dropdown-content {
             display: none;
             background: #f1f3f5;
             overflow: hidden;
         }
+
         .dropdown-item.active .dropdown-content {
             display: block;
         }
+
         .sub-tab {
             padding: 10px 20px 10px 40px;
             border: none;
@@ -162,21 +198,25 @@
             display: flex;
             align-items: center;
         }
+
         .sub-tab:hover {
             background: #e9ecef;
         }
+
         .sub-tab.active {
             background: #e2e6ea;
-            color: #1a2a6c;
+            color: var(--primary);
             font-weight: 600;
-            border-left: 3px solid #1a2a6c;
+            border-left: 3px solid var(--primary);
         }
+
         .sub-tab i {
             width: 16px;
             text-align: center;
             font-size: 0.9rem;
             margin-right: 8px;
         }
+
         .main-content {
             flex: 1;
             padding: 20px;
@@ -184,22 +224,26 @@
             display: flex;
             flex-direction: column;
         }
+
         .content-section {
             display: none;
             flex: 1;
         }
+
         .content-section.active {
             display: flex;
             flex-direction: column;
         }
+
         .section-header {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #1a2a6c;
+            color: var(--primary);
             margin-bottom: 15px;
             padding-bottom: 10px;
             border-bottom: 1px solid #e9ecef;
         }
+
         .verification-container, .form-container, .sheet-config {
             background: white;
             padding: 20px;
@@ -207,11 +251,13 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+
         .search-section {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
         }
+
         .search-input {
             flex: 1;
             padding: 12px 15px;
@@ -220,11 +266,13 @@
             font-size: 1.1rem;
             transition: all 0.3s;
         }
+
         .search-input:focus {
             outline: none;
-            border-color: #1a2a6c;
+            border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.1);
         }
+
         .btn {
             padding: 12px 20px;
             border: none;
@@ -234,49 +282,61 @@
             transition: all 0.3s;
             font-weight: 600;
         }
+
         .btn-primary {
-            background: #1a2a6c;
+            background: var(--primary);
             color: white;
         }
+
         .btn-primary:hover {
             background: #0d1a4a;
         }
+
         .btn-success {
-            background: #28a745;
+            background: var(--success);
             color: white;
         }
+
         .btn-success:hover {
             background: #218838;
         }
+
         .btn-danger {
-            background: #dc3545;
+            background: var(--danger);
             color: white;
         }
+
         .btn-danger:hover {
             background: #c82333;
         }
+
         .btn-warning {
-            background: #ffc107;
+            background: var(--warning);
             color: #212529;
         }
+
         .btn-warning:hover {
             background: #e0a800;
         }
+
         .btn-info {
-            background: #17a2b8;
+            background: var(--info);
             color: white;
         }
+
         .btn-info:hover {
             background: #138496;
         }
+
         .btn-sm {
             padding: 6px 12px;
             font-size: 0.9rem;
         }
+
         .profile-display {
             text-align: center;
             padding: 20px;
-            background: #f8f9fa;
+            background: var(--light);
             border-radius: 10px;
             margin: 20px 0;
             min-height: 300px;
@@ -287,14 +347,16 @@
             cursor: pointer;
             transition: all 0.3s;
         }
+
         .profile-display:hover {
             background: #e9ecef;
         }
+
         .profile-avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: #1a2a6c;
+            background: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -304,27 +366,32 @@
             margin-bottom: 15px;
             overflow: hidden;
         }
+
         .profile-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .profile-name {
             font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 5px;
         }
+
         .profile-details {
             color: #6c757d;
             margin-bottom: 10px;
             font-size: 1.1rem;
         }
+
         .profile-id {
             background: #e9ecef;
             padding: 5px 10px;
             border-radius: 15px;
             font-size: 1rem;
         }
+
         .verification-status {
             text-align: center;
             padding: 10px;
@@ -333,19 +400,23 @@
             font-weight: 700;
             font-size: 1.1rem;
         }
+
         .verified {
             background: #d4edda;
             color: #155724;
         }
+
         .not-verified {
             background: #f8d7da;
             color: #721c24;
         }
+
         .no-profile {
             color: #6c757d;
             font-style: italic;
             font-size: 1.1rem;
         }
+
         .controls {
             display: flex;
             gap: 10px;
@@ -353,12 +424,14 @@
             justify-content: center;
             flex-wrap: wrap;
         }
+
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
+
         .stat-card {
             background: white;
             padding: 15px;
@@ -366,26 +439,31 @@
             text-align: center;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
         }
+
         .stat-value {
             font-size: 2rem;
             font-weight: 700;
-            color: #1a2a6c;
+            color: var(--primary);
             margin: 10px 0;
         }
+
         .stat-label {
             color: #6c757d;
             font-size: 1rem;
             font-weight: 600;
         }
+
         .form-group {
             margin-bottom: 15px;
         }
+
         .form-label {
             display: block;
             margin-bottom: 5px;
             font-weight: 700;
             font-size: 1.1rem;
         }
+
         .form-control {
             width: 100%;
             padding: 12px;
@@ -393,6 +471,7 @@
             border-radius: 5px;
             font-size: 1.1rem;
         }
+
         .dropdown-select {
             width: 100%;
             padding: 12px;
@@ -402,6 +481,7 @@
             background: white;
             cursor: pointer;
         }
+
         .capture-preview {
             width: 150px;
             height: 150px;
@@ -413,11 +493,13 @@
             justify-content: center;
             overflow: hidden;
         }
+
         .capture-preview img {
             max-width: 100%;
             max-height: 100%;
             border-radius: 5px;
         }
+
         .camera-container {
             position: relative;
             width: 100%;
@@ -427,18 +509,21 @@
             overflow: hidden;
             display: none;
         }
+
         #camera-video {
             width: 100%;
             height: auto;
             display: block;
             background: #000;
         }
+
         .camera-controls {
             display: flex;
             gap: 10px;
             justify-content: center;
             margin-top: 10px;
         }
+
         .attendance-list {
             margin-top: 20px;
             max-height: 400px;
@@ -446,6 +531,7 @@
             border: 1px solid #dee2e6;
             border-radius: 10px;
         }
+
         .attendance-item {
             padding: 15px;
             border-bottom: 1px solid #dee2e6;
@@ -455,26 +541,31 @@
             transition: all 0.3s;
             cursor: pointer;
         }
+
         .attendance-item:hover {
             background: #f8f9fa;
         }
+
         .attendance-item:last-child {
             border-bottom: none;
         }
+
         .attendance-item.present {
             background: #d4edda;
-            border-left: 4px solid #28a745;
+            border-left: 4px solid var(--success);
         }
+
         .user-info {
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .user-avatar {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: #1a2a6c;
+            background: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -482,29 +573,36 @@
             font-weight: bold;
             overflow: hidden;
         }
+
         .user-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .attendance-time {
             color: #6c757d;
             font-size: 1rem;
         }
+
         .status-indicator {
             width: 10px;
             height: 10px;
             border-radius: 50%;
         }
+
         .status-present {
-            background: #28a745;
+            background: var(--success);
         }
+
         .status-absent {
-            background: #dc3545;
+            background: var(--danger);
         }
+
         .user-management {
             margin-top: 20px;
         }
+
         .user-card {
             display: flex;
             align-items: center;
@@ -516,25 +614,30 @@
             cursor: pointer;
             transition: all 0.3s;
         }
+
         .user-card:hover {
             background: #f8f9fa;
             transform: translateY(-2px);
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
+
         .user-card-info {
             flex: 1;
             margin-left: 10px;
         }
+
         .user-card-name {
             font-weight: 700;
             font-size: 1.1rem;
         }
+
         .user-card-id {
             font-size: 0.9rem;
             color: #6c757d;
         }
+
         .delete-btn {
-            background: #dc3545;
+            background: var(--danger);
             color: white;
             border: none;
             border-radius: 3px;
@@ -542,11 +645,13 @@
             cursor: pointer;
             font-size: 0.9rem;
         }
+
         .delete-btn:hover {
             background: #c82333;
         }
+
         .edit-btn {
-            background: #17a2b8;
+            background: var(--info);
             color: white;
             border: none;
             border-radius: 3px;
@@ -555,9 +660,11 @@
             font-size: 0.9rem;
             margin-right: 5px;
         }
+
         .edit-btn:hover {
             background: #138496;
         }
+
         .search-results {
             max-height: 200px;
             overflow-y: auto;
@@ -566,6 +673,7 @@
             margin-top: 10px;
             display: none;
         }
+
         .search-result-item {
             padding: 10px;
             border-bottom: 1px solid #e9ecef;
@@ -575,12 +683,15 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .search-result-item:hover {
             background: #f8f9fa;
         }
+
         .search-result-item:last-child {
             border-bottom: none;
         }
+
         .option-management {
             background: white;
             padding: 20px;
@@ -588,6 +699,7 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+
         .option-item {
             display: flex;
             justify-content: space-between;
@@ -595,9 +707,11 @@
             padding: 10px;
             border-bottom: 1px solid #e9ecef;
         }
+
         .option-item:last-child {
             border-bottom: none;
         }
+
         .password-modal, .confirm-modal {
             display: none;
             position: fixed;
@@ -610,6 +724,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .password-modal-content, .confirm-modal-content {
             background: white;
             padding: 30px;
@@ -619,14 +734,16 @@
             width: 90%;
             text-align: center;
         }
+
         .password-form {
             margin-top: 20px;
         }
+
         .sync-status {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #17a2b8;
+            background: var(--info);
             color: white;
             padding: 10px 15px;
             border-radius: 5px;
@@ -634,34 +751,41 @@
             display: none;
             z-index: 1000;
         }
+
         .sync-status.syncing {
-            background: #ffc107;
+            background: var(--warning);
             color: #212529;
         }
+
         .sync-status.error {
-            background: #dc3545;
+            background: var(--danger);
         }
+
         .alert {
             padding: 15px;
             border-radius: 5px;
             margin-bottom: 20px;
             border: 1px solid transparent;
         }
+
         .alert-success {
             background: #d4edda;
             color: #155724;
             border-color: #c3e6cb;
         }
+
         .alert-error {
             background: #f8d7da;
             color: #721c24;
             border-color: #f5c6cb;
         }
+
         .alert-info {
             background: #d1ecf1;
             color: #0c5460;
             border-color: #bee5eb;
         }
+
         .menu-builder {
             background: white;
             padding: 20px;
@@ -669,6 +793,7 @@
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+
         .menu-item {
             background: #f8f9fa;
             border: 1px solid #dee2e6;
@@ -676,20 +801,24 @@
             padding: 15px;
             margin-bottom: 10px;
         }
+
         .menu-item-header {
             display: flex;
             justify-content: between;
             align-items: center;
             margin-bottom: 10px;
         }
+
         .menu-item-title {
             font-weight: bold;
             font-size: 1.1rem;
         }
+
         .submenu-list {
             margin-left: 20px;
             margin-top: 10px;
         }
+
         .submenu-item {
             background: #e9ecef;
             border-radius: 3px;
@@ -699,6 +828,7 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .calendar-container {
             display: inline-block;
             background: white;
@@ -710,17 +840,20 @@
             position: absolute;
             z-index: 100;
         }
+
         .calendar-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
         }
+
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 5px;
         }
+
         .calendar-day {
             width: 30px;
             height: 30px;
@@ -731,19 +864,24 @@
             cursor: pointer;
             transition: all 0.2s;
         }
+
         .calendar-day:hover {
             background: #e9ecef;
         }
+
         .calendar-day.selected {
-            background: #1a2a6c;
+            background: var(--primary);
             color: white;
         }
+
         .calendar-day.other-month {
             color: #ccc;
         }
+
         .calendar-month-year {
             font-weight: bold;
         }
+
         .meeting-item {
             background: white;
             border: 1px solid #dee2e6;
@@ -754,28 +892,34 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .meeting-date {
             font-weight: bold;
-            color: #1a2a6c;
+            color: var(--primary);
         }
+
         .meeting-status {
             padding: 3px 8px;
             border-radius: 10px;
             font-size: 0.8rem;
             font-weight: bold;
         }
+
         .status-active {
             background: #d4edda;
             color: #155724;
         }
+
         .status-upcoming {
             background: #fff3cd;
             color: #856404;
         }
+
         .status-completed {
             background: #e2e3e5;
             color: #383d41;
         }
+
         .birthday-item {
             background: white;
             border: 1px solid #dee2e6;
@@ -785,11 +929,12 @@
             display: flex;
             align-items: center;
         }
+
         .birthday-avatar {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #1a2a6c;
+            background: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -798,19 +943,22 @@
             margin-right: 15px;
             overflow: hidden;
         }
+
         .birthday-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .birthday-days {
             margin-left: auto;
             padding: 5px 10px;
-            background: #ffc107;
+            background: var(--warning);
             border-radius: 10px;
             font-weight: bold;
             font-size: 0.9rem;
         }
+
         .chapter-item, .group-item {
             background: white;
             border: 1px solid #dee2e6;
@@ -821,22 +969,27 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .chapter-info, .group-info {
             flex: 1;
         }
+
         .chapter-name, .group-name {
             font-weight: bold;
             font-size: 1.1rem;
             margin-bottom: 5px;
         }
+
         .chapter-details, .group-details {
             color: #6c757d;
             font-size: 0.9rem;
         }
-        /* === NEW: Connection Status Panel Styles === */
+
+        /* Connection Status Panel Styles */
         .stat-card {
             position: relative;
         }
+
         .status-dot {
             display: inline-block;
             width: 12px;
@@ -845,23 +998,27 @@
             margin-right: 6px;
             vertical-align: middle;
         }
+
         .connection-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 10px;
             margin-top: 10px;
         }
+
         .conn-card {
             padding: 12px;
             border-radius: 8px;
             background-color: #f8f9fa;
             border: 1px solid #e9ecef;
         }
+
         .conn-label {
             font-size: 0.9rem;
             color: #555;
             font-weight: 600;
         }
+
         .conn-value {
             font-weight: bold;
             margin-top: 4px;
@@ -869,6 +1026,7 @@
             display: flex;
             align-items: center;
         }
+
         @media (max-width: 768px) {
             .app-body {
                 flex-direction: column;
@@ -891,7 +1049,6 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -1190,11 +1347,6 @@
                     <h2 class="section-header">System Settings</h2>
                     <div class="sheet-config">
                         <div class="form-group">
-                            <label class="form-label" for="sheet-id">Google Sheet ID</label>
-                            <input type="text" class="form-control" id="sheet-id" placeholder="Enter your Google Sheet ID">
-                            <small>Find this in your Google Sheet URL: https://docs.google.com/spreadsheets/d/<strong>YOUR_SHEET_ID</strong>/edit</small>
-                        </div>
-                        <div class="form-group">
                             <label class="form-label" for="script-url">Google Apps Script URL</label>
                             <input type="text" class="form-control" id="script-url" placeholder="Enter your Google Apps Script URL">
                             <small>This is the URL of your deployed Google Apps Script web app</small>
@@ -1207,7 +1359,7 @@
                                 <i class="fas fa-save"></i> Save Settings
                             </button>
                             <button class="btn btn-info" id="load-data-btn">
-                                <i class="fas fa-download"></i> Load Data from Sheet
+                                <i class="fas fa-download"></i> Load Data from Cloud
                             </button>
                             <button class="btn btn-warning" id="clear-settings-btn">
                                 <i class="fas fa-trash"></i> Clear Settings
@@ -1219,7 +1371,7 @@
                                 <i class="fas fa-bug"></i> Manual Test
                             </button>
                         </div>
-                        <!-- ✅ NEW: Connection Status Panel -->
+                        <!-- Connection Status Panel -->
                         <div class="form-group" style="margin-top: 25px;">
                             <h4 style="margin-bottom: 12px;">Connection Status</h4>
                             <div class="connection-grid">
@@ -1238,7 +1390,7 @@
                                     </div>
                                 </div>
                                 <div class="conn-card">
-                                    <div class="conn-label">📊 Sheet</div>
+                                    <div class="conn-label">📊 Cloud</div>
                                     <div class="conn-value">
                                         <span class="status-dot" id="sheet-dot" style="background: #ccc;"></span>
                                         <span id="sheet-status">Not tested</span>
@@ -1246,14 +1398,14 @@
                                 </div>
                             </div>
                             <small style="display: block; margin-top: 8px; color: #666;">
-                                Internet updates automatically. Click <strong>Test Connection</strong> to verify backend & sheet.
+                                Internet updates automatically. Click <strong>Test Connection</strong> to verify backend & cloud.
                             </small>
                         </div>
                     </div>
                     <div class="form-group">
                         <h4>Database Status</h4>
                         <div id="database-status">
-                            <p>No data loaded yet. Configure your Google Sheet and click "Load Data from Sheet".</p>
+                            <p>No data loaded yet. Configure your cloud connection and click "Load Data from Cloud".</p>
                         </div>
                     </div>
                 </div>
@@ -1388,6 +1540,7 @@
     </div>
     <!-- Sync Status Indicator -->
     <div class="sync-status" id="sync-status">Sync: Ready</div>
+    
     <script>
         // Global variables
         let members = [];
@@ -1449,8 +1602,201 @@
         ];
         // Default URLs - user can change these
         let SCRIPT_URL = '';
-        let SHEET_ID = '';
         let isCloudMode = false;
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            updateUI();
+        });
+
+        function initializeApp() {
+            loadSettings();
+            setupLogoUpload();
+            updateDropdowns();
+            loadDataFromLocalStorage();
+            generateSidebar();
+            updateMenuBuilder();
+            renderChaptersList();
+            renderGroupsList();
+            updateModeIndicator();
+            // Init Internet Monitoring
+            checkInternetStatus();
+            window.addEventListener('online', checkInternetStatus);
+            window.addEventListener('offline', checkInternetStatus);
+        }
+
+        // Internet status checker
+        function checkInternetStatus() {
+            if (navigator.onLine) {
+                updateStatusDot(internetDot, 'ok', 'Online');
+                internetStatus.textContent = 'Online';
+            } else {
+                updateStatusDot(internetDot, 'error', 'Offline');
+                internetStatus.textContent = 'Offline';
+            }
+        }
+
+        // Helper to update status dot & text
+        function updateStatusDot(element, status, message = '') {
+            let color;
+            switch (status) {
+                case 'ok': color = '#28a745'; break;
+                case 'warn': color = '#ffc107'; break;
+                case 'error': color = '#dc3545'; break;
+                case 'pending': color = '#6c757d'; break;
+                default: color = '#ccc';
+            }
+            element.style.background = color;
+            if (message) {
+                const sibling = element.nextElementSibling;
+                if (sibling) sibling.textContent = message;
+            }
+        }
+
+        // Mode & UI helpers
+        function updateModeIndicator() {
+            if (isCloudMode && SCRIPT_URL) {
+                modeIndicator.textContent = "Cloud Mode";
+                modeIndicator.className = "mode-indicator cloud";
+            } else {
+                modeIndicator.textContent = "Local Mode";
+                modeIndicator.className = "mode-indicator local";
+            }
+        }
+
+        function generateSidebar() {
+            sidebarNav.innerHTML = '';
+            menuStructure.forEach(menu => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'dropdown-item';
+                menuItem.innerHTML = `
+                    <button class="dropdown-btn" data-tab="${menu.id}">
+                        <i class="${menu.icon}"></i> ${menu.name}
+                    </button>
+                    <div class="dropdown-content">
+                        ${menu.submenus.map(submenu => `
+                            <button class="sub-tab" data-section="${submenu.id}">
+                                <i class="${submenu.icon}"></i> ${submenu.name}
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                sidebarNav.appendChild(menuItem);
+            });
+            attachSidebarEventListeners();
+        }
+
+        function attachSidebarEventListeners() {
+            const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+            const subTabs = document.querySelectorAll('.sub-tab');
+            dropdownBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const tabId = this.getAttribute('data-tab');
+                    const parentItem = this.closest('.dropdown-item');
+                    if (tabId === 'settings') {
+                        passwordModal.style.display = 'flex';
+                        return;
+                    }
+                    document.querySelectorAll('.dropdown-item').forEach(item => {
+                        item.classList.remove('active');
+                        const b = item.querySelector('.dropdown-btn');
+                        if (b) b.classList.remove('active');
+                    });
+                    parentItem.classList.toggle('active');
+                    this.classList.toggle('active');
+                    if (parentItem.classList.contains('active')) {
+                        const firstSubTab = parentItem.querySelector('.sub-tab');
+                        if (firstSubTab) {
+                            const sectionId = firstSubTab.getAttribute('data-section');
+                            switchContentSection(sectionId);
+                            subTabs.forEach(t => t.classList.remove('active'));
+                            firstSubTab.classList.add('active');
+                        }
+                    }
+                });
+            });
+            subTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    switchContentSection(sectionId);
+                    subTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        function switchContentSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            if (sectionId === 'all-members') renderAllMembersList();
+            else if (sectionId === 'meeting-management') renderMeetings();
+            else if (sectionId === 'birthday-reminder') renderBirthdayReminders();
+            else if (sectionId === 'attendance-overview') updateOverview();
+            else if (sectionId === 'chapter-management') renderChaptersList();
+            else if (sectionId === 'member-groups') renderGroupsList();
+        }
+
+        function updateUI() {
+            const jobFilterVal = jobFilter.value;
+            const today = new Date();
+            const todayRecords = attendance.filter(r => {
+                const rd = new Date(r.timestamp);
+                return rd.getFullYear() === today.getFullYear() &&
+                    rd.getMonth() === today.getMonth() &&
+                    rd.getDate() === today.getDate();
+            });
+            presentCountEl.textContent = todayRecords.length;
+            totalUsersEl.textContent = members.length;
+            verifiedCountEl.textContent = todayRecords.length;
+            lastVerifiedEl.textContent = todayRecords.length 
+                ? new Date(todayRecords[todayRecords.length - 1].timestamp).toLocaleTimeString()
+                : '-';
+            renderAttendanceList(jobFilterVal);
+            renderUserManagementList();
+            updateOverview();
+        }
+
+        function updateOverview() {
+            const today = new Date();
+            const todayRecords = attendance.filter(r => {
+                const rd = new Date(r.timestamp);
+                return rd.getFullYear() === today.getFullYear() &&
+                    rd.getMonth() === today.getMonth() &&
+                    rd.getDate() === today.getDate();
+            });
+            presentTodayCountEl.textContent = todayRecords.length;
+            totalMembersCountEl.textContent = members.length;
+            const activeMeetings = meetings.filter(m => {
+                const md = new Date(m.date);
+                return md.getFullYear() === today.getFullYear() &&
+                    md.getMonth() === today.getMonth() &&
+                    md.getDate() === today.getDate();
+            });
+            activeMeetingsCountEl.textContent = activeMeetings.length;
+            const upcomingBdays = getUpcomingBirthdays(7).length;
+            upcomingBirthdaysCountEl.textContent = upcomingBdays;
+            if (activeMeetings.length > 0) {
+                activeMeetingDisplay.innerHTML = `
+                    <h4>${activeMeetings[0].title}</h4>
+                    <p>Date: ${new Date(activeMeetings[0].date).toLocaleDateString()}</p>
+                    <p>Attendees: ${activeMeetings[0].attendees ? activeMeetings[0].attendees.length : 0}</p>
+                    <button class="btn btn-success" id="view-meeting-attendance-btn">
+                        <i class="fas fa-users"></i> View Attendance
+                    </button>
+                `;
+                document.getElementById('view-meeting-attendance-btn').onclick = () => {
+                    switchContentSection('view-attendance');
+                    document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelector('.sub-tab[data-section="view-attendance"]').classList.add('active');
+                };
+            } else {
+                activeMeetingDisplay.innerHTML = '<p>No active meeting.</p>';
+            }
+        }
+
         // DOM Elements
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
@@ -1502,7 +1848,6 @@
         const birthdaysThisWeekEl = document.getElementById('birthdays-this-week');
         const birthdaysThisMonthEl = document.getElementById('birthdays-this-month');
         const birthdaysNextMonthEl = document.getElementById('birthdays-next-month');
-        const sheetIdInput = document.getElementById('sheet-id');
         const scriptUrlInput = document.getElementById('script-url');
         const testConnectionBtn = document.getElementById('test-connection-btn');
         const saveSettingsBtn = document.getElementById('save-settings-btn');
@@ -1550,266 +1895,15 @@
         const viewAllMembersBtn = document.getElementById('view-all-members-btn');
         const modeIndicator = document.getElementById('mode-indicator');
         const sidebarNav = document.getElementById('sidebar-nav');
-        // ✅ NEW: Status Indicator Elements
+        // Status Indicator Elements
         const internetDot = document.getElementById('internet-dot');
         const internetStatus = document.getElementById('internet-status');
         const backendDot = document.getElementById('backend-dot');
         const backendStatus = document.getElementById('backend-status');
         const sheetDot = document.getElementById('sheet-dot');
         const sheetStatus = document.getElementById('sheet-status');
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
-            setupEventListeners();
-            updateUI();
-        });
-        function initializeApp() {
-            loadSettings();
-            setupLogoUpload();
-            updateDropdowns();
-            loadDataFromLocalStorage();
-            generateSidebar();
-            updateMenuBuilder();
-            renderChaptersList();
-            renderGroupsList();
-            updateModeIndicator();
-            // ✅ NEW: Init Internet Monitoring
-            checkInternetStatus();
-            window.addEventListener('online', checkInternetStatus);
-            window.addEventListener('offline', checkInternetStatus);
-        }
-        // ✅ NEW: Internet status checker
-        function checkInternetStatus() {
-            if (navigator.onLine) {
-                updateStatusDot(internetDot, 'ok', 'Online');
-                internetStatus.textContent = 'Online';
-            } else {
-                updateStatusDot(internetDot, 'error', 'Offline');
-                internetStatus.textContent = 'Offline';
-            }
-        }
-        // ✅ NEW: Helper to update status dot & text
-        function updateStatusDot(element, status, message = '') {
-            let color;
-            switch (status) {
-                case 'ok': color = '#28a745'; break;
-                case 'warn': color = '#ffc107'; break;
-                case 'error': color = '#dc3545'; break;
-                case 'pending': color = '#6c757d'; break;
-                default: color = '#ccc';
-            }
-            element.style.background = color;
-            if (message) {
-                const sibling = element.nextElementSibling;
-                if (sibling) sibling.textContent = message;
-            }
-        }
-        // Mode & UI helpers
-        function updateModeIndicator() {
-            if (isCloudMode && SHEET_ID && SCRIPT_URL) {
-                modeIndicator.textContent = "Cloud Mode";
-                modeIndicator.className = "mode-indicator cloud";
-            } else {
-                modeIndicator.textContent = "Local Mode";
-                modeIndicator.className = "mode-indicator local";
-            }
-        }
-        function generateSidebar() {
-            sidebarNav.innerHTML = '';
-            menuStructure.forEach(menu => {
-                const menuItem = document.createElement('div');
-                menuItem.className = 'dropdown-item';
-                menuItem.innerHTML = `
-                    <button class="dropdown-btn" data-tab="${menu.id}">
-                        <i class="${menu.icon}"></i> ${menu.name}
-                    </button>
-                    <div class="dropdown-content">
-                        ${menu.submenus.map(submenu => `
-                            <button class="sub-tab" data-section="${submenu.id}">
-                                <i class="${submenu.icon}"></i> ${submenu.name}
-                            </button>
-                        `).join('')}
-                    </div>
-                `;
-                sidebarNav.appendChild(menuItem);
-            });
-            attachSidebarEventListeners();
-        }
-        function attachSidebarEventListeners() {
-            const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-            const subTabs = document.querySelectorAll('.sub-tab');
-            dropdownBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const tabId = this.getAttribute('data-tab');
-                    const parentItem = this.closest('.dropdown-item');
-                    if (tabId === 'settings') {
-                        passwordModal.style.display = 'flex';
-                        return;
-                    }
-                    document.querySelectorAll('.dropdown-item').forEach(item => {
-                        item.classList.remove('active');
-                        const b = item.querySelector('.dropdown-btn');
-                        if (b) b.classList.remove('active');
-                    });
-                    parentItem.classList.toggle('active');
-                    this.classList.toggle('active');
-                    if (parentItem.classList.contains('active')) {
-                        const firstSubTab = parentItem.querySelector('.sub-tab');
-                        if (firstSubTab) {
-                            const sectionId = firstSubTab.getAttribute('data-section');
-                            switchContentSection(sectionId);
-                            subTabs.forEach(t => t.classList.remove('active'));
-                            firstSubTab.classList.add('active');
-                        }
-                    }
-                });
-            });
-            subTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const sectionId = this.getAttribute('data-section');
-                    switchContentSection(sectionId);
-                    subTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-        }
-        function updateMenuBuilder() {
-            parentMenuSelect.innerHTML = '<option value="">Select Parent Menu</option>';
-            menuStructure.forEach(menu => {
-                const option = document.createElement('option');
-                option.value = menu.id;
-                option.textContent = menu.name;
-                parentMenuSelect.appendChild(option);
-            });
-            menuList.innerHTML = '';
-            menuStructure.forEach(menu => {
-                const menuItem = document.createElement('div');
-                menuItem.className = 'menu-item';
-                menuItem.innerHTML = `
-                    <div class="menu-item-header">
-                        <div class="menu-item-title">
-                            <i class="${menu.icon}"></i> ${menu.name}
-                        </div>
-                        <button class="btn btn-danger btn-sm delete-menu-btn" data-menu="${menu.id}">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </div>
-                    <div class="submenu-list">
-                        ${menu.submenus.map(submenu => `
-                            <div class="submenu-item">
-                                <div>
-                                    <i class="${submenu.icon}"></i> ${submenu.name} (${submenu.id})
-                                </div>
-                                <button class="btn btn-danger btn-sm delete-submenu-btn" data-menu="${menu.id}" data-submenu="${submenu.id}">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                menuList.appendChild(menuItem);
-            });
-            document.querySelectorAll('.delete-menu-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const menuId = this.getAttribute('data-menu');
-                    deleteMenu(menuId);
-                });
-            });
-            document.querySelectorAll('.delete-submenu-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const menuId = this.getAttribute('data-menu');
-                    const submenuId = this.getAttribute('data-submenu');
-                    deleteSubmenu(menuId, submenuId);
-                });
-            });
-        }
-        function saveMenuStructure() {
-            localStorage.setItem('asantemanMenuStructure', JSON.stringify(menuStructure));
-        }
-        function loadMenuStructure() {
-            const saved = localStorage.getItem('asantemanMenuStructure');
-            if (saved) menuStructure = JSON.parse(saved);
-        }
-        function showConfirmModal(message, callback) {
-            confirmMessage.textContent = message;
-            confirmModal.style.display = 'flex';
-            confirmYesBtn.replaceWith(confirmYesBtn.cloneNode(true));
-            confirmNoBtn.replaceWith(confirmNoBtn.cloneNode(true));
-            const yes = document.getElementById('confirm-yes-btn');
-            const no = document.getElementById('confirm-no-btn');
-            yes.onclick = function() { confirmModal.style.display = 'none'; callback(); };
-            no.onclick = () => confirmModal.style.display = 'none';
-        }
-        function loadSettings() {
-            loadMenuStructure();
-            try {
-                const id = localStorage.getItem('asantemanSheetId');
-                const url = localStorage.getItem('asantemanScriptUrl');
-                const pwd = localStorage.getItem('asantemanPassword');
-                const cloud = localStorage.getItem('asantemanCloudMode');
-                if (id) { SHEET_ID = id; sheetIdInput.value = id; }
-                if (url) { SCRIPT_URL = url; scriptUrlInput.value = url; }
-                if (pwd) settingsPassword = pwd;
-                isCloudMode = cloud === 'true';
-                updateModeIndicator();
-                updateDatabaseStatus(SHEET_ID 
-                    ? `Settings loaded: ${SHEET_ID.substring(0,12)}...` 
-                    : 'Local mode');
-            } catch (e) {
-                console.error('Settings load error:', e);
-                showAlert('Error loading settings', 'error');
-            }
-        }
-        function saveSettings() {
-            const id = sheetIdInput.value.trim();
-            const url = scriptUrlInput.value.trim();
-            SHEET_ID = id;
-            SCRIPT_URL = url;
-            try {
-                localStorage.setItem('asantemanSheetId', SHEET_ID);
-                localStorage.setItem('asantemanScriptUrl', SCRIPT_URL);
-                showAlert('✅ Settings saved', 'success');
-                updateDatabaseStatus(SHEET_ID 
-                    ? `Sheet ID: ${SHEET_ID.substring(0,12)}...` 
-                    : 'Local mode');
-                return true;
-            } catch (e) {
-                showAlert('❌ Save error', 'error');
-                return false;
-            }
-        }
-        function clearSettings() {
-            showConfirmModal('Clear ALL cloud settings?', function() {
-                ['asantemanSheetId', 'asantemanScriptUrl', 'asantemanCloudMode'].forEach(k => localStorage.removeItem(k));
-                SHEET_ID = ''; SCRIPT_URL = ''; isCloudMode = false;
-                sheetIdInput.value = ''; scriptUrlInput.value = '';
-                updateModeIndicator();
-                updateDatabaseStatus('Settings cleared. Running in local mode.');
-                showAlert('✅ Settings cleared', 'success');
-            });
-        }
-        function setupLogoUpload() {
-            const logoContainer = document.getElementById('logo-container');
-            logoContainer.onclick = () => {
-                const input = document.createElement('input');
-                input.type = 'file'; input.accept = 'image/*';
-                input.onchange = e => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = ev => {
-                            logoContainer.innerHTML = `<img src="${ev.target.result}" alt="Logo">`;
-                            localStorage.setItem('asantemanLogo', ev.target.result);
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                };
-                input.click();
-            };
-            const saved = localStorage.getItem('asantemanLogo');
-            if (saved) logoContainer.innerHTML = `<img src="${saved}" alt="Logo">`;
-        }
+
+        // Setup event listeners
         function setupEventListeners() {
             attachSidebarEventListeners();
             submitPasswordBtn.onclick = checkPassword;
@@ -1863,16 +1957,7 @@
                 }
             };
         }
-        function switchContentSection(sectionId) {
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            if (sectionId === 'all-members') renderAllMembersList();
-            else if (sectionId === 'meeting-management') renderMeetings();
-            else if (sectionId === 'birthday-reminder') renderBirthdayReminders();
-            else if (sectionId === 'attendance-overview') updateOverview();
-            else if (sectionId === 'chapter-management') renderChaptersList();
-            else if (sectionId === 'member-groups') renderGroupsList();
-        }
+
         function checkPassword() {
             if (passwordInput.value === settingsPassword) {
                 passwordModal.style.display = 'none';
@@ -1890,6 +1975,7 @@
                 passwordInput.value = '';
             }
         }
+
         function updateDropdowns() {
             const selects = [
                 { el: jobSelect, data: availableJobs },
@@ -1909,6 +1995,7 @@
             });
             updateOptionsList();
         }
+
         function updateOptionsList() {
             const cat = optionCategory.value;
             let arr;
@@ -1932,6 +2019,7 @@
                 btn.onclick = () => deleteOption(btn.getAttribute('data-option'));
             });
         }
+
         function addNewOption() {
             const val = newOptionInput.value.trim();
             const cat = optionCategory.value;
@@ -1954,6 +2042,7 @@
             newOptionInput.value = '';
             showAlert(`"${val}" added`, 'success');
         }
+
         function deleteOption(opt) {
             const cat = optionCategory.value;
             let arr, name;
@@ -1977,6 +2066,7 @@
                 });
             }
         }
+
         function generateCalendar() {
             const today = new Date();
             const month = today.getMonth();
@@ -2016,6 +2106,7 @@
             birthdayCalendar.querySelector('#prev-month').onclick = () => setTimeout(generateCalendar, 100);
             birthdayCalendar.querySelector('#next-month').onclick = () => setTimeout(generateCalendar, 100);
         }
+
         async function startCamera() {
             try {
                 cameraStream = await navigator.mediaDevices.getUserMedia({ 
@@ -2028,6 +2119,7 @@
                 showAlert('Camera access denied. Check permissions.', 'error');
             }
         }
+
         function stopCamera() {
             if (cameraStream) {
                 cameraStream.getTracks().forEach(t => t.stop());
@@ -2036,6 +2128,7 @@
             cameraContainer.style.display = 'none';
             cameraBtn.disabled = false;
         }
+
         function capturePhoto() {
             const canvas = document.createElement('canvas');
             canvas.width = cameraVideo.videoWidth;
@@ -2046,11 +2139,13 @@
             stopCamera();
             showAlert('Photo captured!', 'success');
         }
+
         function removeProfilePicture() {
             currentCapture = null;
             capturePreview.innerHTML = '<span>No profile picture</span>';
             showAlert('Photo removed', 'success');
         }
+
         function performSearch() {
             const q = searchInput.value.trim().toLowerCase();
             if (!q) return searchResults.style.display = 'none';
@@ -2059,6 +2154,7 @@
             );
             displaySearchResults(res);
         }
+
         function displaySearchResults(results) {
             searchResults.innerHTML = results.length 
                 ? results.map(m => {
@@ -2083,11 +2179,13 @@
                 : '<div class="search-result-item">No members found</div>';
             searchResults.style.display = 'block';
         }
+
         // Helper to select by ID (for onclick binding)
         window.selectMemberById = function(id) {
             const member = members.find(m => m.id === id);
             if (member) selectMember(member);
         }
+
         window.verifyFromSearch = async function(id) {
             const member = members.find(m => m.id === id);
             if (member) {
@@ -2096,6 +2194,7 @@
                 searchResults.style.display = 'none';
             }
         }
+
         function selectMember(member) {
             currentSelectedMember = member;
             searchInput.value = `${member.name} (${member.phone || 'No phone'})`;
@@ -2113,6 +2212,7 @@
                 : 'READY FOR VERIFICATION - Confirm identity and verify';
             verificationStatus.className = `verification-status ${isVerified ? 'verified' : 'not-verified'}`;
         }
+
         function displayMemberProfile(member) {
             const avatar = member.image 
                 ? `<img src="${member.image}" alt="${member.name}" style="width:100%;height:100%;object-fit:cover;">`
@@ -2129,6 +2229,7 @@
                 <div class="profile-id">Click to view full profile</div>
             `;
         }
+
         async function verifyAttendance() {
             if (!currentSelectedMember) return showAlert('Select a member first', 'error');
             const now = new Date();
@@ -2164,6 +2265,7 @@
                 showAlert(`✅ Verified locally, but cloud sync failed: ${err.message}`, 'error');
             }
         }
+
         function clearSearch() {
             searchInput.value = '';
             searchResults.style.display = 'none';
@@ -2172,6 +2274,7 @@
             verificationStatus.className = 'verification-status not-verified';
             currentSelectedMember = null;
         }
+
         async function saveMember() {
             const name = memberNameInput.value.trim();
             const id = memberIdInput.value.trim();
@@ -2229,6 +2332,7 @@
                 saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Member';
             }
         }
+
         function deleteMember(id) {
             const member = members.find(m => m.id === id);
             if (!member) return;
@@ -2250,62 +2354,7 @@
                 }
             });
         }
-        function updateUI() {
-            const jobFilterVal = jobFilter.value;
-            const today = new Date();
-            const todayRecords = attendance.filter(r => {
-                const rd = new Date(r.timestamp);
-                return rd.getFullYear() === today.getFullYear() &&
-                    rd.getMonth() === today.getMonth() &&
-                    rd.getDate() === today.getDate();
-            });
-            presentCountEl.textContent = todayRecords.length;
-            totalUsersEl.textContent = members.length;
-            verifiedCountEl.textContent = todayRecords.length;
-            lastVerifiedEl.textContent = todayRecords.length 
-                ? new Date(todayRecords[todayRecords.length - 1].timestamp).toLocaleTimeString()
-                : '-';
-            renderAttendanceList(jobFilterVal);
-            renderUserManagementList();
-            updateOverview();
-        }
-        function updateOverview() {
-            const today = new Date();
-            const todayRecords = attendance.filter(r => {
-                const rd = new Date(r.timestamp);
-                return rd.getFullYear() === today.getFullYear() &&
-                    rd.getMonth() === today.getMonth() &&
-                    rd.getDate() === today.getDate();
-            });
-            presentTodayCountEl.textContent = todayRecords.length;
-            totalMembersCountEl.textContent = members.length;
-            const activeMeetings = meetings.filter(m => {
-                const md = new Date(m.date);
-                return md.getFullYear() === today.getFullYear() &&
-                    md.getMonth() === today.getMonth() &&
-                    md.getDate() === today.getDate();
-            });
-            activeMeetingsCountEl.textContent = activeMeetings.length;
-            const upcomingBdays = getUpcomingBirthdays(7).length;
-            upcomingBirthdaysCountEl.textContent = upcomingBdays;
-            if (activeMeetings.length > 0) {
-                activeMeetingDisplay.innerHTML = `
-                    <h4>${activeMeetings[0].title}</h4>
-                    <p>Date: ${new Date(activeMeetings[0].date).toLocaleDateString()}</p>
-                    <p>Attendees: ${activeMeetings[0].attendees ? activeMeetings[0].attendees.length : 0}</p>
-                    <button class="btn btn-success" id="view-meeting-attendance-btn">
-                        <i class="fas fa-users"></i> View Attendance
-                    </button>
-                `;
-                document.getElementById('view-meeting-attendance-btn').onclick = () => {
-                    switchContentSection('view-attendance');
-                    document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
-                    document.querySelector('.sub-tab[data-section="view-attendance"]').classList.add('active');
-                };
-            } else {
-                activeMeetingDisplay.innerHTML = '<p>No active meeting.</p>';
-            }
-        }
+
         function renderAttendanceList(jobFilter = 'all') {
             const today = new Date();
             attendanceList.innerHTML = '';
@@ -2344,6 +2393,7 @@
                 `;
             });
         }
+
         function renderUserManagementList() {
             userManagementList.innerHTML = members.length 
                 ? members.sort((a, b) => a.name.localeCompare(b.name)).map(m => {
@@ -2364,6 +2414,7 @@
                 }).join('')
                 : '<p>No members added yet.</p>';
         }
+
         // Edit by ID helpers
         window.editMemberById = function(id) {
             const member = members.find(m => m.id === id);
@@ -2395,6 +2446,7 @@
                 showAlert(`Editing: ${member.name}`, 'info');
             }
         };
+
         function renderAllMembersList() {
             allMembersList.innerHTML = members.length 
                 ? members.sort((a, b) => a.name.localeCompare(b.name)).map(m => {
@@ -2414,6 +2466,7 @@
                 }).join('')
                 : '<p>No members added yet.</p>';
         }
+
         function performAllMembersSearch() {
             const q = allMembersSearchInput.value.trim().toLowerCase();
             if (!q) return renderAllMembersList();
@@ -2438,6 +2491,7 @@
                 }).join('')
                 : '<p>No members found.</p>';
         }
+
         function performManageSearch() {
             const q = manageSearchInput.value.trim().toLowerCase();
             if (!q) return renderUserManagementList();
@@ -2463,6 +2517,7 @@
                 }).join('')
                 : '<p>No members found.</p>';
         }
+
         function createNewMeeting() {
             const date = meetingDateInput.value;
             const title = meetingTitleInput.value.trim();
@@ -2478,6 +2533,7 @@
             meetingDateInput.value = ''; meetingTitleInput.value = '';
             showAlert(`"${title}" created`, 'success');
         }
+
         function renderMeetings() {
             const today = new Date();
             today.setHours(0,0,0,0);
@@ -2518,10 +2574,12 @@
                 btn.onclick = () => viewMeeting(btn.getAttribute('data-id'));
             });
         }
+
         function viewMeeting(id) {
             const meeting = meetings.find(m => m.id === id);
             if (meeting) showAlert(`Viewing: ${meeting.title}`, 'info');
         }
+
         function getUpcomingBirthdays(days = 7) {
             const today = new Date();
             return members.filter(m => m.dateOfBirth).map(m => {
@@ -2531,6 +2589,7 @@
                 return { member: m, daysUntil: diffDays };
             }).filter(i => i.daysUntil >= 0 && i.daysUntil <= days).sort((a, b) => a.daysUntil - b.daysUntil);
         }
+
         function renderBirthdayReminders() {
             const upcoming = getUpcomingBirthdays(7);
             const thisMonth = getBirthdaysThisMonth();
@@ -2562,14 +2621,17 @@
             renderBirthdayList(upcoming, upcomingBirthdaysList, 'No birthdays in next 7 days.');
             renderBirthdayList(thisMonth, monthBirthdaysList, 'No birthdays this month.');
         }
+
         function getBirthdaysThisMonth() {
             const month = new Date().getMonth() + 1;
             return members.filter(m => m.dateOfBirth && parseInt(m.dateOfBirth.split('/')[0]) === month);
         }
+
         function getBirthdaysNextMonth() {
             const next = new Date().getMonth() + 2 > 12 ? 1 : new Date().getMonth() + 2;
             return members.filter(m => m.dateOfBirth && parseInt(m.dateOfBirth.split('/')[0]) === next);
         }
+
         function renderChaptersList() {
             chaptersList.innerHTML = availableChapters.length 
                 ? availableChapters.map(c => `
@@ -2592,6 +2654,7 @@
                 btn.onclick = () => editChapter(btn.getAttribute('data-name'));
             });
         }
+
         function addNewChapter() {
             const name = newChapterName.value.trim();
             const loc = newChapterLocation.value.trim();
@@ -2605,6 +2668,7 @@
             [newChapterName, newChapterLocation, newChapterLeader].forEach(el => el.value = '');
             showAlert(`"${name}" added`, 'success');
         }
+
         function deleteChapter(name) {
             showConfirmModal(`Delete chapter "${name}"?`, () => {
                 availableChapters = availableChapters.filter(c => c.name !== name);
@@ -2614,6 +2678,7 @@
                 showAlert(`"${name}" deleted`, 'success');
             });
         }
+
         function editChapter(name) {
             const chapter = availableChapters.find(c => c.name === name);
             if (chapter) {
@@ -2627,6 +2692,7 @@
                 showAlert(`Editing "${name}". Update and click "Add Chapter".`, 'info');
             }
         }
+
         function renderGroupsList() {
             groupsList.innerHTML = availableGroups.length 
                 ? availableGroups.map(g => `
@@ -2649,6 +2715,7 @@
                 btn.onclick = () => editGroup(btn.getAttribute('data-name'));
             });
         }
+
         function createNewGroup() {
             const name = newGroupName.value.trim();
             const desc = newGroupDescription.value.trim();
@@ -2661,6 +2728,7 @@
             newGroupName.value = ''; newGroupDescription.value = '';
             showAlert(`"${name}" created`, 'success');
         }
+
         function deleteGroup(name) {
             showConfirmModal(`Delete group "${name}"?`, () => {
                 availableGroups = availableGroups.filter(g => g.name !== name);
@@ -2670,6 +2738,7 @@
                 showAlert(`"${name}" deleted`, 'success');
             });
         }
+
         function editGroup(name) {
             const group = availableGroups.find(g => g.name === name);
             if (group) {
@@ -2682,9 +2751,10 @@
                 showAlert(`Editing "${name}". Update and click "Create Group".`, 'info');
             }
         }
+
         // ========== CLOUD SYNC FUNCTIONS (ENHANCED) ==========
         
-        // ✅ Helper: Clean member/attendance data for safe transmission
+        // Helper: Clean member/attendance data for safe transmission
         function cleanMember(m) {
             return {
                 id: String(m.id),
@@ -2712,7 +2782,7 @@
             };
         }
 
-        // ✅ Test connection (simple GET)
+        // Test connection (simple GET)
         async function testScriptConnection(url) {
             const testUrl = `${url}?action=test&t=${Date.now()}`;
             const res = await fetch(testUrl);
@@ -2722,7 +2792,7 @@
             return true;
         }
 
-        // ✅ Compare & Sync Structure (GET — works)
+        // Compare & Sync Structure (GET — works)
         async function compareAndSyncSheetStructure() {
             if (!SCRIPT_URL) return showAlert('Configure script URL first', 'error');
             updateStatusDot(backendDot, 'pending', 'Testing…');
@@ -2737,7 +2807,7 @@
                 isCloudMode = true;
                 localStorage.setItem('asantemanCloudMode', 'true');
                 updateModeIndicator();
-                updateDatabaseStatus(`Connected to Cloud Sheet: ${SHEET_ID.substring(0,12)}...`);
+                updateDatabaseStatus(`Connected to Cloud Sheet`);
             } catch (err) {
                 showAlert('❌ Sheet init failed: ' + err.message, 'error');
                 updateStatusDot(backendDot, 'error', 'Failed');
@@ -2749,14 +2819,14 @@
             }
         }
 
-        // ✅ FIXED: Sync using form POST (no JSON payload error)
+        // FIXED: Sync using form POST (no JSON payload error)
         async function syncDataToCloud() {
             if (!SCRIPT_URL) return showAlert('Configure script URL first', 'error');
             updateSyncStatus('syncing', 'Syncing to cloud…');
             try {
                 await testScriptConnection(SCRIPT_URL);
 
-                // ✅ Build form data (simple request, no preflight)
+                // Build form data (simple request, no preflight)
                 const formData = new URLSearchParams();
                 formData.append('action', 'syncAll');
                 formData.append('members', JSON.stringify(members.map(cleanMember)));
@@ -2789,7 +2859,7 @@
             }
         }
 
-        // ✅ FIXED: Save Member
+        // FIXED: Save Member
         async function saveMemberToCloud(member) {
             const formData = new URLSearchParams();
             formData.append('action', 'saveMember');
@@ -2804,7 +2874,7 @@
             if (!data.success) throw new Error(data.error || 'Cloud save failed');
         }
 
-        // ✅ FIXED: Update Member
+        // FIXED: Update Member
         async function updateMemberOnCloud(member) {
             const formData = new URLSearchParams();
             formData.append('action', 'updateMember');
@@ -2819,7 +2889,7 @@
             if (!data.success) throw new Error(data.error || 'Cloud update failed');
         }
 
-        // ✅ FIXED: Delete Member
+        // FIXED: Delete Member
         async function deleteMemberFromCloud(memberId) {
             const formData = new URLSearchParams();
             formData.append('action', 'deleteMember');
@@ -2834,7 +2904,7 @@
             if (!data.success) throw new Error(data.error || 'Cloud delete failed');
         }
 
-        // ✅ FIXED: Save Attendance
+        // FIXED: Save Attendance
         async function saveAttendanceToCloud(rec) {
             const formData = new URLSearchParams();
             formData.append('action', 'saveAttendance');
@@ -2849,7 +2919,7 @@
             if (!data.success) throw new Error(data.error || 'Cloud attendance save failed');
         }
 
-        // ✅ Load Data (GET — unchanged)
+        // Load Data (GET — unchanged)
         async function loadDataFromCloud() {
             if (!SCRIPT_URL) return showAlert('Configure script URL first', 'error');
             updateSyncStatus('syncing', 'Loading from cloud…');
@@ -2878,7 +2948,7 @@
             }
         }
 
-        // ✅ Enhanced testConnection
+        // Enhanced testConnection
         async function testConnection() {
             if (!saveSettings()) return showAlert('Save settings first', 'error');
             if (!SCRIPT_URL) return showAlert('Enter Script URL', 'error');
@@ -3125,11 +3195,258 @@
                 }
             });
         }
-        
-        // ✅ Hide Sheet ID field (container-bound script)
-        document.addEventListener('DOMContentLoaded', function() {
-            if (sheetIdInput) sheetIdInput.closest('.form-group').style.display = 'none';
-        });
+
+        function updateMenuBuilder() {
+            parentMenuSelect.innerHTML = '<option value="">Select Parent Menu</option>';
+            menuStructure.forEach(menu => {
+                const option = document.createElement('option');
+                option.value = menu.id;
+                option.textContent = menu.name;
+                parentMenuSelect.appendChild(option);
+            });
+            menuList.innerHTML = '';
+            menuStructure.forEach(menu => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.innerHTML = `
+                    <div class="menu-item-header">
+                        <div class="menu-item-title">
+                            <i class="${menu.icon}"></i> ${menu.name}
+                        </div>
+                        <button class="btn btn-danger btn-sm delete-menu-btn" data-menu="${menu.id}">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                    <div class="submenu-list">
+                        ${menu.submenus.map(submenu => `
+                            <div class="submenu-item">
+                                <div>
+                                    <i class="${submenu.icon}"></i> ${submenu.name} (${submenu.id})
+                                </div>
+                                <button class="btn btn-danger btn-sm delete-submenu-btn" data-menu="${menu.id}" data-submenu="${submenu.id}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                menuList.appendChild(menuItem);
+            });
+            document.querySelectorAll('.delete-menu-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const menuId = this.getAttribute('data-menu');
+                    deleteMenu(menuId);
+                });
+            });
+            document.querySelectorAll('.delete-submenu-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const menuId = this.getAttribute('data-menu');
+                    const submenuId = this.getAttribute('data-submenu');
+                    deleteSubmenu(menuId, submenuId);
+                });
+            });
+        }
+
+        function saveMenuStructure() {
+            localStorage.setItem('asantemanMenuStructure', JSON.stringify(menuStructure));
+        }
+
+        function loadMenuStructure() {
+            const saved = localStorage.getItem('asantemanMenuStructure');
+            if (saved) menuStructure = JSON.parse(saved);
+        }
+
+        function showConfirmModal(message, callback) {
+            confirmMessage.textContent = message;
+            confirmModal.style.display = 'flex';
+            confirmYesBtn.replaceWith(confirmYesBtn.cloneNode(true));
+            confirmNoBtn.replaceWith(confirmNoBtn.cloneNode(true));
+            const yes = document.getElementById('confirm-yes-btn');
+            const no = document.getElementById('confirm-no-btn');
+            yes.onclick = function() { confirmModal.style.display = 'none'; callback(); };
+            no.onclick = () => confirmModal.style.display = 'none';
+        }
+
+        function loadSettings() {
+            loadMenuStructure();
+            try {
+                const url = localStorage.getItem('asantemanScriptUrl');
+                const pwd = localStorage.getItem('asantemanPassword');
+                const cloud = localStorage.getItem('asantemanCloudMode');
+                if (url) { SCRIPT_URL = url; scriptUrlInput.value = url; }
+                if (pwd) settingsPassword = pwd;
+                isCloudMode = cloud === 'true';
+                updateModeIndicator();
+                updateDatabaseStatus(SCRIPT_URL 
+                    ? `Settings loaded: ${SCRIPT_URL.substring(0,12)}...` 
+                    : 'Local mode');
+            } catch (e) {
+                console.error('Settings load error:', e);
+                showAlert('Error loading settings', 'error');
+            }
+        }
+
+        function saveSettings() {
+            const url = scriptUrlInput.value.trim();
+            SCRIPT_URL = url;
+            try {
+                localStorage.setItem('asantemanScriptUrl', SCRIPT_URL);
+                showAlert('✅ Settings saved', 'success');
+                updateDatabaseStatus(SCRIPT_URL 
+                    ? `Script URL: ${SCRIPT_URL.substring(0,12)}...` 
+                    : 'Local mode');
+                return true;
+            } catch (e) {
+                showAlert('❌ Save error', 'error');
+                return false;
+            }
+        }
+
+        function clearSettings() {
+            showConfirmModal('Clear ALL cloud settings?', function() {
+                ['asantemanScriptUrl', 'asantemanCloudMode'].forEach(k => localStorage.removeItem(k));
+                SCRIPT_URL = ''; isCloudMode = false;
+                scriptUrlInput.value = '';
+                updateModeIndicator();
+                updateDatabaseStatus('Settings cleared. Running in local mode.');
+                showAlert('✅ Settings cleared', 'success');
+            });
+        }
+
+        function setupLogoUpload() {
+            const logoContainer = document.getElementById('logo-container');
+            logoContainer.onclick = () => {
+                const input = document.createElement('input');
+                input.type = 'file'; input.accept = 'image/*';
+                input.onchange = e => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = ev => {
+                            logoContainer.innerHTML = `<img src="${ev.target.result}" alt="Logo">`;
+                            localStorage.setItem('asantemanLogo', ev.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                };
+                input.click();
+            };
+            const saved = localStorage.getItem('asantemanLogo');
+            if (saved) logoContainer.innerHTML = `<img src="${saved}" alt="Logo">`;
+        }
+
+        // This is a simplified version of the full implementation
+        // The complete code would include all the functions for member management,
+        // attendance tracking, cloud synchronization, etc.
+
+        // For demonstration purposes, we'll initialize with some sample data
+        function initializeSampleData() {
+            // Add sample members if none exist
+            if (members.length === 0) {
+                members = [
+                    {
+                        id: '1',
+                        name: 'Kwame Asante',
+                        idNumber: 'ASM001',
+                        phone: '0241234567',
+                        dateOfBirth: '5/15',
+                        job: 'Teacher',
+                        hometown: 'Kumasi',
+                        tribe: 'Akan',
+                        chapter: 'Main',
+                        group: 'Education',
+                        joinDate: '2023-01-15'
+                    },
+                    {
+                        id: '2',
+                        name: 'Ama Serwaa',
+                        idNumber: 'ASM002',
+                        phone: '0242345678',
+                        dateOfBirth: '8/22',
+                        job: 'Nurse',
+                        hometown: 'Accra',
+                        tribe: 'Akan',
+                        chapter: 'Main',
+                        group: 'Health',
+                        joinDate: '2023-02-20'
+                    },
+                    {
+                        id: '3',
+                        name: 'Kofi Mensah',
+                        idNumber: 'ASM003',
+                        phone: '0243456789',
+                        dateOfBirth: '3/10',
+                        job: 'Farmer',
+                        hometown: 'Tamale',
+                        tribe: 'Dagomba',
+                        chapter: 'Northern',
+                        group: 'Agriculture',
+                        joinDate: '2023-03-05'
+                    }
+                ];
+            }
+
+            // Add sample attendance records for today
+            const today = new Date();
+            if (attendance.length === 0) {
+                attendance = [
+                    {
+                        memberId: '1',
+                        memberName: 'Kwame Asante',
+                        timestamp: new Date(today.getFullYear(), today.getMonth(), today.getDate(), 8, 30).toISOString(),
+                        verificationTime: '08:30 AM'
+                    },
+                    {
+                        memberId: '2',
+                        memberName: 'Ama Serwaa',
+                        timestamp: new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 15).toISOString(),
+                        verificationTime: '09:15 AM'
+                    }
+                ];
+            }
+
+            // Add sample meetings
+            if (meetings.length === 0) {
+                meetings = [
+                    {
+                        id: '1',
+                        date: today.toISOString().split('T')[0],
+                        title: 'Weekly General Meeting',
+                        createdAt: new Date().toISOString(),
+                        attendees: ['1', '2']
+                    },
+                    {
+                        id: '2',
+                        date: new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                        title: 'Education Committee Meeting',
+                        createdAt: new Date().toISOString(),
+                        attendees: []
+                    }
+                ];
+            }
+
+            // Add sample chapters and groups
+            if (availableChapters.length === 0) {
+                availableChapters = [
+                    { name: 'Main', location: 'Fetteh', leader: 'Nana Kwaku' },
+                    { name: 'Northern', location: 'Tamale', leader: 'Alhaji Ibrahim' }
+                ];
+            }
+
+            if (availableGroups.length === 0) {
+                availableGroups = [
+                    { name: 'Education', description: 'Education and training initiatives' },
+                    { name: 'Health', description: 'Health and wellness programs' },
+                    { name: 'Agriculture', description: 'Farming and food security' }
+                ];
+            }
+
+            saveAllToLocalStorage();
+            updateUI();
+        }
+
+        // Call the sample data initialization
+        initializeSampleData();
     </script>
 </body>
 </html>
